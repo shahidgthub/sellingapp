@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { Link } from 'react-router-dom';
+import log from '../../public/images/Log.png';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -41,7 +43,18 @@ const Signup = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-black to-blue-500 bg-fixed flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-r from-black to-blue-500 bg-fixed">
+      <header className="flex items-center justify-between container mx-auto py-6">
+          <div className="flex space-x-2">
+            <img src={log} alt="logo" className="w-[50px] h-[50px] rounded-full" />
+            <h2 className="text-orange-500 pt-2 text-2xl">CourseHaven</h2>
+          </div>
+          <div className="space-x-4">
+            <Link to={"/login"} className="bg-transparent text-white py-2 px-4 border rounded-xl text-xl">Login</Link>
+            <Link to="/login" className="bg-orange-500 text-white py-2 px-4 rounded-xl text-xl">Join now</Link>
+          </div>
+        </header>
+      <div className='flex items-center justify-center px-4'>
       <div className="bg-gray-900 shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h1 className="text-2xl font-semibold text-white text-center mb-4">
           Welcome to <span className="text-orange-500">Course Heaven</span>
@@ -116,6 +129,7 @@ const Signup = () => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };
