@@ -37,14 +37,19 @@ const Home = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:4000/api/user/logout");
-      localStorage.removeItem('isLoggedIn');
-      setIsLoggedIn(false);
-      navigate("/login");
+      const response = await axios.get("http://localhost:4000/api/user/logout", {}, { withCredentials: true });
+      if (response.status === 200) {
+        localStorage.removeItem('isLoggedIn');
+        setIsLoggedIn(false);
+        navigate("/login", { replace: true }); // 🔄 Ensures proper redirect without back navigation
+      } else {
+        console.error("Logout failed:", response);
+      }
     } catch (error) {
       console.error("Logout error:", error);
     }
   };
+  
 
   const fetchCourses = async () => {
     try {
@@ -64,12 +69,12 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-black to-blue-500 bg-fixed bg-cover bg-center">
       <div className="min-h-screen text-white">
-        <header className="flex items-center justify-between container mx-auto py-6">
+        <header className="flex lg:flex-nowrap flex-wrap items-center justify-between container mx-auto py-6">
           <div className="flex space-x-2">
             <img src={log} alt="logo" className="w-[50px] h-[50px] rounded-full" />
             <h2 className="text-orange-500 pt-2 text-2xl">CourseHaven</h2>
           </div>
-          <div className="space-x-4">
+          <div className="space-x-4 lg:pt-0 pt-6">
             {isLoggedIn ? (
               <button
                 onClick={handleLogout}
@@ -107,7 +112,7 @@ const Home = () => {
           {loading ? (
             <p className="text-center">Loading courses...</p>
           ) : (
-            <Slider {...settings} className="space-x-2">
+            <Slider {...settings}>
               {courses.map((course) => (
                 <div key={course.id} className="pb-2 px-2">
                   <div className="bg-gray-900 rounded-lg py-5 shadow-lg flex flex-col items-center">
