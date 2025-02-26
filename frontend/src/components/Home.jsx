@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import log from '../../public/images/Log.png';
+import log from '../../public/images/booklog.jpg';
 import { FaFacebook } from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
 import { FaTwitter } from "react-icons/fa6";
@@ -19,8 +19,8 @@ var settings = {
   centerPadding: "20px",
   responsive: [
     { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 1, infinite: true, dots: true } },
-    { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 1, infinite: true } },
-    { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: true } }
+    { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 1, infinite: true, arrows: false } },
+    { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: true, arrows: false } }
   ]
 };
 
@@ -67,12 +67,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-black to-blue-500 bg-fixed bg-cover bg-center">
+    <div className="min-h-screen bg-gradient-to-r from-black to-blue-500 bg-fixed ">
       <div className="min-h-screen text-white">
         <header className="flex lg:flex-nowrap flex-wrap items-center justify-between container mx-auto py-6">
           <div className="flex space-x-2">
-            <img src={log} alt="logo" className="w-[50px] h-[50px] rounded-full" />
-            <h2 className="text-orange-500 pt-2 text-2xl">CourseHaven</h2>
+            <img src={log} alt="logo" className="w-[70px] h-[70px] rounded-full" />
+            <h2 className="text-orange-500 pt-4 text-2xl font-bold">CourseHaven</h2>
           </div>
           <div className="space-x-4 lg:pt-0 pt-6">
             {isLoggedIn ? (
@@ -102,7 +102,7 @@ const Home = () => {
             <Link to={'/courses'} className="bg-green-500 text-white hover:bg-white duration-500 hover:text-black rounded px-6 py-3 font-semibold">
               Explore Courses
             </Link>
-            <button className="bg-white text-black hover:bg-green-500 duration-500 hover:text-white rounded px-6 py-3 font-semibold">
+            <button className="bg-white text-black hover:bg-green-500 duration-500 hover:text-white rounded px-6 py-3 font-semibold lg:mt-0 mt-4">
               Course Videos
             </button>
           </div>
@@ -114,7 +114,7 @@ const Home = () => {
           ) : (
             <Slider {...settings}>
               {courses.map((course) => (
-                <div key={course.id} className="pb-2 px-2">
+                <div key={course.id} className="pb-2 lg:px-2 px-4">
                   <div className="bg-gray-900 rounded-lg py-5 shadow-lg flex flex-col items-center">
                     <img
                       src={course.image.url}
