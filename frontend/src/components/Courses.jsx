@@ -52,7 +52,7 @@ const Courses = () => {
              <h2 className=" pt-4 text-2xl font-bold">Courses</h2>
            </div>
            <div className='flex gap-2'>
-           <div className="relative w-full max-w-sm mt-8">
+           <div className="relative w-full max-w-sm mt-2">
       <Search className="absolute right-3   mt-3 text-gray-400" />
       <input
         type="text"
@@ -60,7 +60,7 @@ const Courses = () => {
         className="w-full pl-10 pr-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
     </div>
-           <IoMdContact  className=' w-20 h-20 mt-2'/>
+           <IoMdContact  className=' w-10 h-10 mt-2'/>
 
              
 
